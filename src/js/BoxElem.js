@@ -1,20 +1,20 @@
-const React = require("react");
+import React, {useContext} from "react"
+import checkedMoveController from "./checkedMoveController"
+import Context from "./context"
+
 
 const BoxElem = (props) => {
+    const {
+        arrGame,
+        modeGame
+    } = useContext(Context)
 
     const movePlayerController = () => {
-        if (props.arrGame[props.id1][props.id2] == "")
-            if (props.modeGame) moveControll()
+        if (arrGame[props.id1][props.id2] == "")
+            if (modeGame) moveControll()
         else {
-                if(props.id1 + 1 < 50)if(props.arrGame[props.id1 + 1][props.id2] != "") moveControll() 
-                if(props.id1 - 1 >=0)if(props.arrGame[props.id1 - 1][props.id2] != "") moveControll()
-                if(props.id2 + 1 < 50)if(props.arrGame[props.id1][props.id2 + 1] != "") moveControll()
-                if(props.id2 - 1 >=0)if(props.arrGame[props.id1][props.id2 - 1] != "") moveControll()
-                if(props.id1 + 1 <50 && props.id2 + 1 <50)if(props.arrGame[props.id1 + 1][props.id2 + 1] != "") moveControll()
-                if(props.id1 + 1 <50 && props.id2 - 1 >=0)if(props.arrGame[props.id1 + 1][props.id2 - 1] != "") moveControll()
-                if(props.id1 - 1 >=0 && props.id2 - 1 >=0)if(props.arrGame[props.id1 - 1][props.id2 - 1] != "") moveControll()
-                if(props.id1 - 1 >=0 && props.id2 + 1 <50)if(props.arrGame[props.id1 - 1][props.id2 + 1] != "") moveControll()
-                if(props.firstmove) moveControll()
+            if (checkedMoveController(props.id1, props.id2, arrGame, props.firstmove))
+                moveControll()
         }
     }
 
@@ -27,13 +27,11 @@ const BoxElem = (props) => {
     }
 
     return (
-        <div className={props.modeGame ? "box-classic" : "box-modern"} 
+        <div className={modeGame ? "box-classic" : "box-modern"} 
             onClick={()=>movePlayerController()}>
-            {props.arrGame[props.id1][props.id2]}
+            {arrGame[props.id1][props.id2]}
         </div>
     )
 }
 
-module.exports = {
-    BoxElem
-}
+export default BoxElem

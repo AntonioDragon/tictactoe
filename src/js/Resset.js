@@ -1,11 +1,14 @@
-const React = require("react");
+import React, { useContext }  from "react"
+import Context from "./context"
 
 const Resset= (props) => {
+    const {ArrCreate} = useContext(Context)
 
     const ressetGame = () =>{
         props.setWinChecked(false)
         props.setplayerTurn(true)
-        props.ArrCreate()
+        props.setCheckedDrawTurn(1)
+        ArrCreate()
         props.setfirstmove(true)
     }
 
@@ -16,4 +19,4 @@ const Resset= (props) => {
     )
 }
 
-module.exports = {Resset}
+export default Resset

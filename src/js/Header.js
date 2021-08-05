@@ -1,4 +1,4 @@
-const React = require("react");
+import React  from "react"
 
 const Header= () => {
     return (
@@ -8,4 +8,4 @@ const Header= () => {
     )
 }
 
-module.exports = {Header}
+export default Header

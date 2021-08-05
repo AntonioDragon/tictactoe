@@ -1,45 +1,45 @@
-const React = require("react");
-const { useState } = require("react");
+import React from "react"
+import {useState}  from "react"
 
-const { BackMenu } = require("./BackMenu");
-const { Matrix } = require("./Matrix");
-const { Resset } = require("./Resset");
-const { Result } = require("./Result");
+import BackMenu from "./BackMenu"
+import Matrix from "./Matrix"
+import Resset from "./Resset"
+import Result from "./Result"
 
 const BlockGame= (props) => {
     const [winChecked, setWinChecked] = useState(false)
+    const [drawChecked, setDrawChecked] = useState(false)
     const [playerTurn, setplayerTurn] = useState(true)
+    const [checkedDrawTurn, setCheckedDrawTurn] = useState(1)
     const [firstmove, setfirstmove] = useState(true)
     
     return (
         <div className="block-game">
             <Result
-                playerTurn ={playerTurn}
-                winChecked ={winChecked}
+                playerTurn={playerTurn}
+                winChecked={winChecked}
+                drawChecked={drawChecked}
             />
-            <BackMenu
-                setRunGame ={props.setRunGame}
-                setmodeGame={props.setmodeGame}
-            />
+            <BackMenu/>
             <Resset
                 setWinChecked={setWinChecked}
                 setplayerTurn={setplayerTurn}
-                ArrCreate = {props.ArrCreate}
                 setfirstmove={setfirstmove}
+                setCheckedDrawTurn={setCheckedDrawTurn}
             />
             <Matrix
-                arrGame={props.arrGame}
-                modeGame={props.modeGame}
-                setArrGame={props.setArrGame}
-                playerTurn = {playerTurn}
-                setplayerTurn = {setplayerTurn}
-                winChecked = {winChecked}
-                setWinChecked = {setWinChecked}
+                playerTurn={playerTurn}
+                setplayerTurn={setplayerTurn}
+                winChecked={winChecked}
+                setWinChecked={setWinChecked}
                 firstmove={firstmove}
                 setfirstmove={setfirstmove}
+                checkedDrawTurn = {checkedDrawTurn}
+                setCheckedDrawTurn = {setCheckedDrawTurn}
+                setDrawChecked={setDrawChecked}
             />
         </div>
     )
 }
 
-module.exports = {BlockGame}
+export default BlockGame

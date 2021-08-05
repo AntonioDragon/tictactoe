@@ -1,74 +1,62 @@
-require("../scss/style.scss");
-require("normalize.css")
+import "normalize.css"
+import "../scss/style.scss"
 
-const React = require("react");
-const {useState} = require("react");
-const ReactDOM = require("react-dom");
+import React, {useState} from "react"
+import ReactDOM from "react-dom"
+import Context from "./context"
 
-const { BlockGame } = require("./BlockGame");
-const { ButtonGameRun } = require("./ButtonGameRun");
-const { GameMode } = require("./GameMode");
-const { Header } = require("./Header");
+import BlockGame from "./BlockGame"
+import ButtonGameRun from "./ButtonGameRun"
+import GameMode from "./GameMode"
+import Header from "./Header"
 
 
 const App = () => {
-    const [runGame, setRunGame] = useState({game : false})
-    const [modeGame , setmodeGame] = useState() 
-    const [ArrClassic, setArrClassic] = useState([])
-    const [ArrModern, setArrModern] = useState([])
-    const [errModeGame, seterrModeGame] = useState("")
+    const [runGame, setRunGame] = useState(false)
+    const [modeGame, setmodeGame] = useState()
+    const [arrGame, setArrGame] = useState([])
+    const [errModeGame, setErrModeGame] = useState("")
 
-    const ArrCreateClassic = () =>{
+    const ArrCreate = () => {
         let arr = [];
-        for(let i = 0;i<3;i++)
+        let lengthArr;
+        if (modeGame) lengthArr = 3
+        else lengthArr = 50
+        for (let i = 0; i < lengthArr; i++)
             arr.push(new Array())
-        for(let i = 0;i<3;i++)
-            for(let j = 0;j<3;j++)
+        for (let i = 0; i < lengthArr; i++)
+            for (let j = 0; j < lengthArr; j++)
                 arr[i].push(new Array(""))
-       setArrClassic(arr)
+        setArrGame(arr)
     }
-    
-    const ArrCreateModern = () =>{
-        let arr = [];
-        for(let i = 0; i<50; i++)
-            arr.push(new Array())
-        for(let i = 0;i<50;i++)
-            for(let j = 0;j<50;j++)
-                arr[i].push(new Array(""))
-       setArrModern(arr)
-    }
-    
+
     return (
         <>
+        <Context.Provider value={{
+            modeGame,
+            setmodeGame,
+            arrGame,
+            setArrGame,
+            ArrCreate,
+            setRunGame
+        }}>
         <Header/>
         {
-        runGame.game ? <BlockGame
-            arrGame={modeGame ? ArrClassic : ArrModern}
-            setArrGame={modeGame ? setArrClassic : setArrModern}
-            modeGame={modeGame}
-            setmodeGame={setmodeGame}
-            ArrCreate={modeGame?ArrCreateClassic:ArrCreateModern}
-            setRunGame={setRunGame}
-        /> 
+        runGame ? <BlockGame/> 
             : (
                 <div className = "block-start">
                 <ButtonGameRun
-                    setRunGame={setRunGame}
-                    arrCreateModern={ArrCreateModern}
-                    arrCreateClassic={ArrCreateClassic}
-                    runGame={runGame}
-                    modeGame={modeGame}
+                    ArrCreate ={ArrCreate}
                     errModeGame={errModeGame}
-                    seterrModeGame={seterrModeGame}
+                    setErrModeGame={setErrModeGame}
                 />
                 <GameMode
-                    modeGame={modeGame}
-                    setmodeGame={setmodeGame}
-                    seterrModeGame={seterrModeGame}
+                    setErrModeGame={setErrModeGame}
                 />
                 </div>
             )
-        }     
+        }
+        </Context.Provider>     
         </>
     )
 }

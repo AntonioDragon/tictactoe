@@ -1,10 +1,12 @@
-const React = require("react");
+import React, { useContext }  from "react"
+import Context from "./context"
 
-const BackMenu= (props) => {
+const BackMenu = () => {
+    const {setmodeGame,setRunGame} = useContext(Context)
 
     const Menu = () =>{
-        props.setRunGame(false)
-        props.setmodeGame(undefined)
+        setRunGame(false)
+        setmodeGame(undefined)
     }
 
     return (
@@ -13,5 +15,4 @@ const BackMenu= (props) => {
         </div>
     )
 }
-
-module.exports = {BackMenu}
+export default BackMenu

@@ -1,24 +1,32 @@
-const React = require("react");
+import React, {
+    useContext
+} from "react"
+import Context from "./context"
 
-const ButtonGameRun= (props) => {
-    
-    StartGame = ()=>{
-        if(props.modeGame != undefined){
-            props.setRunGame({game : !props.runGame.game}) 
-            props.modeGame ? props.arrCreateClassic() : props.arrCreateModern()
+const ButtonGameRun = (props) => {
+    const {
+        setRunGame,
+        ArrCreate,
+        modeGame
+    } = useContext(Context)
+
+    const StartGame = () => {
+        if (modeGame != undefined) {
+            setRunGame(true)
+            ArrCreate()
         } else notifErrModeGame()
     }
 
-    notifErrModeGame = () => props.seterrModeGame("Specify the game mode")
+    const notifErrModeGame = () => props.setErrModeGame("Specify the game mode")
 
     return (
         <>
-        <div className="block-start__error-message">{props.errModeGame}</div>
-        <div className = "block-start__button">
-            <button className = "button-start" type="button" onClick = {() => StartGame()}>Start Game</button>
-        </div>
+            <div className="block-start__error-message">{props.errModeGame}</div>
+            <div className = "block-start__button">
+                <button className = "button-start" type="button" onClick = {() => StartGame()}>Start Game</button>
+            </div>
         </>
     )
 }
 
-module.exports = {ButtonGameRun}
+export default ButtonGameRun
