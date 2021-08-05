@@ -1,7 +1,7 @@
 import React, {useContext} from "react"
-import checkedMoveController from "./checkedMoveController"
-import Context from "./contextApp"
-import ContextBlockGame from "./contextBlockGame"
+import checkedMoveController from "../Helpers/checkedMoveController"
+import Context from "../Context/contextApp"
+import ContextBlockGame from "../Context/contextBlockGame"
 
 
 const BoxElem = (props) => {

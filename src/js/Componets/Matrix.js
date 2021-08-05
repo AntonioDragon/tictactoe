@@ -1,11 +1,11 @@
 import React, {useContext} from "react"
-import Context from "./contextApp"
-import ContextBlockGame from "./contextBlockGame"
+import Context from "../Context/contextApp"
+import ContextBlockGame from "../Context/contextBlockGame"
 
 import {
     checkedWinClassic,
     checkedWinModern
-} from "./checkedPlayerWin"
+} from "../Helpers/checkedPlayerWin"
 import BoxElem from "./BoxElem"
 
 const Matrix = (props) => {

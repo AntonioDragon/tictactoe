@@ -1,12 +1,12 @@
-import React,{useState} from "react"
-import ContextBlockGame from "./contextBlockGame"
+import React, {useState} from "react"
+import ContextBlockGame from "../Context/contextBlockGame"
 
 import BackMenu from "./BackMenu"
 import Matrix from "./Matrix"
 import Resset from "./Resset"
 import Result from "./Result"
 
-const BlockGame= (props) => {
+const BlockGame = () => {
     const [winChecked, setWinChecked] = useState(false)
     const [drawChecked, setDrawChecked] = useState(false)
     const [playerTurn, setplayerTurn] = useState(true)

@@ -3,12 +3,12 @@ import "../scss/style.scss"
 
 import React, {useState} from "react"
 import ReactDOM from "react-dom"
-import Context from "./contextApp"
+import Context from "./Context/contextApp"
 
-import BlockGame from "./BlockGame"
-import ButtonGameRun from "./ButtonGameRun"
-import GameMode from "./GameMode"
-import Header from "./Header"
+import BlockGame from "./Componets/BlockGame"
+import ButtonGameRun from "./Componets/ButtonGameRun"
+import GameMode from "./Componets/GameMode"
+import Header from "./Componets/Header"
 
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
     const [arrGame, setArrGame] = useState([])
     const [errModeGame, setErrModeGame] = useState("")
 
-    const ArrCreate = () => {
+    const arrCreate = () => {
         let arr = [];
         let lengthArr;
         if (modeGame) lengthArr = 3
@@ -37,7 +37,7 @@ const App = () => {
             setmodeGame,
             arrGame,
             setArrGame,
-            ArrCreate,
+            arrCreate,
             setRunGame
         }}>
         <Header/>
@@ -46,7 +46,6 @@ const App = () => {
             : (
                 <div className = "block-start">
                 <ButtonGameRun
-                    ArrCreate ={ArrCreate}
                     errModeGame={errModeGame}
                     setErrModeGame={setErrModeGame}
                 />
@@ -61,4 +60,4 @@ const App = () => {
     )
 }
 
-ReactDOM.render( < App / > , document.querySelector(".root"))
+ReactDOM.render(<App/>, document.querySelector(".root"))
