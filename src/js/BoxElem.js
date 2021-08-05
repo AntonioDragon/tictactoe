@@ -1,28 +1,37 @@
 import React, {useContext} from "react"
 import checkedMoveController from "./checkedMoveController"
-import Context from "./context"
+import Context from "./contextApp"
+import ContextBlockGame from "./contextBlockGame"
 
 
 const BoxElem = (props) => {
     const {
         arrGame,
-        modeGame
+        modeGame,
     } = useContext(Context)
+    const {
+        playerTurn,
+        setplayerTurn,
+        winChecked,
+        firstmove,
+        setfirstmove
+    } = useContext(ContextBlockGame)
 
     const movePlayerController = () => {
         if (arrGame[props.id1][props.id2] == "")
             if (modeGame) moveControll()
         else {
-            if (checkedMoveController(props.id1, props.id2, arrGame, props.firstmove))
+            if (checkedMoveController(props.id1, props.id2, arrGame, firstmove))
                 moveControll()
         }
     }
 
     const moveControll = () => {
-        if (!props.winChecked) {
-            if (props.firstmove) props.setfirstmove(false)
-            props.setplayerTurn(!props.playerTurn)
+        if (!winChecked) {
+            if (firstmove) setfirstmove(false)
+            setplayerTurn(!playerTurn)
             props.addPlaterTurnArr(props.id1, props.id2)
+            console.log(playerTurn)
         }
     }
 

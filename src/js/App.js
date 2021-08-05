@@ -3,7 +3,7 @@ import "../scss/style.scss"
 
 import React, {useState} from "react"
 import ReactDOM from "react-dom"
-import Context from "./context"
+import Context from "./contextApp"
 
 import BlockGame from "./BlockGame"
 import ButtonGameRun from "./ButtonGameRun"

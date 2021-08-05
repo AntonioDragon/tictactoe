@@ -1,7 +1,6 @@
-import React, {
-    useContext
-} from "react"
-import Context from "./context"
+import React, {useContext} from "react"
+import Context from "./contextApp"
+import ContextBlockGame from "./contextBlockGame"
 
 import {
     checkedWinClassic,
@@ -15,13 +14,16 @@ const Matrix = (props) => {
         setArrGame,
         modeGame
     } = useContext(Context)
+    const {
+        playerTurn
+    } = useContext(ContextBlockGame)
 
     const addPlaterTurnArr = (id1, id2) => {
         let arr = arrGame,
             checkwin = false
-        arr[id1][id2] = props.playerTurn ? "X" : "O"
-        modeGame ? checkwin = checkedWinClassic(props.playerTurn ? "X" : "O", arr) :
-            checkwin = checkedWinModern(id1, id2, props.playerTurn ? "X" : "O", arr)
+        arr[id1][id2] = playerTurn ? "X" : "O"
+        modeGame ? checkwin = checkedWinClassic(playerTurn ? "X" : "O", arr) :
+            checkwin = checkedWinModern(id1, id2, playerTurn ? "X" : "O", arr)
         props.setWinChecked(checkwin)
         setArrGame(arr)
         props.setCheckedDrawTurn(props.checkedDrawTurn + 1)
@@ -35,7 +37,6 @@ const Matrix = (props) => {
         props.setDrawChecked(true)
     }
 
-
     return (
         <div className="matrix">
             <div className={modeGame ? "area-classic" : "area-modern"}>
@@ -46,12 +47,7 @@ const Matrix = (props) => {
                             key={i+j}
                             id1={i}
                             id2={j}
-                            playerTurn={props.playerTurn}
-                            setplayerTurn={props.setplayerTurn} 
-                            winChecked={props.winChecked}
                             addPlaterTurnArr={addPlaterTurnArr}
-                            firstmove ={props.firstmove}
-                            setfirstmove={props.setfirstmove}    
                         />
                     )
                 )

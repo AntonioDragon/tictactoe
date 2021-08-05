@@ -1,15 +1,20 @@
 import React, { useContext }  from "react"
-import Context from "./context"
+import Context from "./contextApp"
+import ContextBlockGame from "./contextBlockGame"
 
 const Resset= (props) => {
     const {ArrCreate} = useContext(Context)
+    const {
+        setplayerTurn, 
+        setfirstmove
+    } = useContext(ContextBlockGame)
 
     const ressetGame = () =>{
         props.setWinChecked(false)
-        props.setplayerTurn(true)
+        setplayerTurn(true)
         props.setCheckedDrawTurn(1)
         ArrCreate()
-        props.setfirstmove(true)
+        setfirstmove(true)
     }
 
     return (

@@ -1,5 +1,5 @@
-import React from "react"
-import {useState}  from "react"
+import React,{useState} from "react"
+import ContextBlockGame from "./contextBlockGame"
 
 import BackMenu from "./BackMenu"
 import Matrix from "./Matrix"
@@ -14,31 +14,30 @@ const BlockGame= (props) => {
     const [firstmove, setfirstmove] = useState(true)
     
     return (
+        <ContextBlockGame.Provider value={{
+            playerTurn,
+            setplayerTurn,
+            winChecked,
+            firstmove,
+            setfirstmove
+        }}> 
         <div className="block-game">
             <Result
-                playerTurn={playerTurn}
-                winChecked={winChecked}
                 drawChecked={drawChecked}
             />
             <BackMenu/>
             <Resset
                 setWinChecked={setWinChecked}
-                setplayerTurn={setplayerTurn}
-                setfirstmove={setfirstmove}
                 setCheckedDrawTurn={setCheckedDrawTurn}
             />
             <Matrix
-                playerTurn={playerTurn}
-                setplayerTurn={setplayerTurn}
-                winChecked={winChecked}
                 setWinChecked={setWinChecked}
-                firstmove={firstmove}
-                setfirstmove={setfirstmove}
                 checkedDrawTurn = {checkedDrawTurn}
                 setCheckedDrawTurn = {setCheckedDrawTurn}
                 setDrawChecked={setDrawChecked}
             />
         </div>
+        </ContextBlockGame.Provider> 
     )
 }
 

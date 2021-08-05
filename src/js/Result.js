@@ -1,14 +1,20 @@
-import React  from "react"
+import React, { useContext }  from "react"
+import ContextBlockGame from "./contextBlockGame"
 
 const Result= (props) => {
+    const {
+        playerTurn, 
+        winChecked
+    } = useContext(ContextBlockGame)
+
     return (
         <div className="result">
             <h2 className="result__title">
-                {!props.winChecked ?
-                    `Player turn : ${props.playerTurn?"X":"O"}`
+                {!winChecked ?
+                    `Player turn : ${playerTurn?"X":"O"}`
                     : props.drawChecked ? 
                         "Draw" 
-                        :`Won : ${!props.playerTurn?"X":"O"}`}
+                        :`Won : ${!playerTurn?"X":"O"}`}
             </h2>
         </div>
     )

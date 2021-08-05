@@ -1,8 +1,11 @@
 import React, { useContext }  from "react"
-import Context from "./context"
+import Context from "./contextApp"
 
 const BackMenu = () => {
-    const {setmodeGame,setRunGame} = useContext(Context)
+    const {
+        setmodeGame,
+        setRunGame
+    } = useContext(Context)
 
     const Menu = () =>{
         setRunGame(false)

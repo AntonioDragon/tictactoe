@@ -1,7 +1,5 @@
-import React, {
-    useContext
-} from "react"
-import Context from "./context"
+import React, {useContext} from "react"
+import Context from "./contextApp"
 
 const ButtonGameRun = (props) => {
     const {
